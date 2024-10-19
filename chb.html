@@ -1,0 +1,118 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'roboto', sans-serif;
+        }
+        body {
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chatbox {
+            background-color: #f1f1f1;
+            width: 500px;
+            height: 600px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .chatbox-header {
+            background-color: #3498db;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+        .chatbox-body {
+            padding: 20px;
+        }
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .chat-input:focus {
+            outline: none;
+        }
+        .chat-output {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .chat-output div {
+            margin-bottom: 10px;
+        }
+        .chat-output div:last-child {
+            margin-bottom: 0;
+        }
+        .chat-output .user {
+            background-color: #e6e6e6;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .chat-output .bot {
+            background-color: #3498db;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbox">
+        <div class="chatbox-header">ChatBot</div>
+        <div class="chatbox-body">
+            <div class="chat-output">
+            </div>
+            <input type="text" class="chat-input" id="chat-input" placeholder="Type here...">
+        </div>
+    </div>
+    <script>
+        const chatInput = document.getElementById('chat-input');
+        const chatOutput = document.querySelector('.chat-output');
+        const speech = new SpeechSynthesisUtterance();
+        speech.lang = 'en-US';
+        speech.rate = 1;
+        speech.pitch = 1;
+        function speak(text) {
+            speech.text = text;
+            window.speechSynthesis.speak(speech);
+        }
+        function botResponse(text) {
+            const botDiv = document.createElement('div');
+            botDiv.classList.add('bot');
+            botDiv.innerHTML = text;
+            chatOutput.appendChild(botDiv);
+            speak(text);
+        }
+        function userResponse(text) {
+            const userDiv = document.createElement('div');
+            userDiv.classList.add('user');
+            userDiv.innerHTML = text;
+            chatOutput.appendChild(userDiv);
+        }
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const inputText = chatInput.value;
+                chatInput.value = '';
+                userResponse(inputText);
+                botResponse(`You said: ${inputText}`);
+            }
+        });
+        botResponse('Hello, how can I help you today?');
+    </script>
+</body>
+</html>

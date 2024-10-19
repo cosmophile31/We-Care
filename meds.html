@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meds Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+        body {
+            background-color: #f5cac3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            margin: 20px;
+        }
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+        .schedule-item {
+            background-color: #fce4ec;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .schedule-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .schedule-item p {
+            font-size: 1rem;
+        }
+        .reminder {
+            background-color: #ffc5c5;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .reminder p {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Meds Schedule</h1>
+        <div class="schedule">
+            <div class="schedule-item">
+                <h2>8am</h2>
+                <p>Medicine Name</p>
+                <div class="reminder">
+                    <p>Reminder</p>
+                </div>
+            </div>
+            <div class="schedule-item">
+                <h2>12pm</h2>
+                <p>Medicine Name</p>
+                <div class="reminder">
+                    <p>Reminder</p>
+                </div>
+            </div>
+            <div class="schedule-item">
+                <h2>6pm</h2>
+                <p>Medicine Name</p>
+                <div class="reminder">
+                    <p>Reminder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

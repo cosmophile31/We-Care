@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            background-color: #e4d6f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            margin: 20px;
+        }
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-item {
+            margin-bottom: 20px;
+        }
+        .form-item label {
+            color: #333;
+            font-size: 1.5rem;
+        }
+        .form-item input {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .form-item select {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .form-item button[type="submit"] {
+            background-color: #0ef;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Sign Up</h1>
+        <form>
+            <div class="form-item">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-item">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-item">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-item">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <div class="form-item">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required>
+            </div>
+            <div class="form-item">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-item">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="user-details">
+            <h2>User Details</h2>
+            <p>Name: <span id="user-name"></span></p>
+            <p>Gender: <span id="user-gender"></span></p>
+            <p>Age: <span id="user-age"></span></p>
+            <p>Email: <span id="user-email"></span></p>
+            <p>Address: <span id="user-address"></span></p>
+            <p>Mobile Number: <span id="user-mobile"></span></p>
+        </div>
+        <script>
+            const form = document.querySelector('form');
+            const userDetails = document.querySelector('.user-details');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const data = new FormData(form);
+                const user = {
+                    name: data.get('name'),
+                    gender: data.get('gender'),
+                    age: data.get('age'),
+                    email: data.get('email'),
+                    address: data.get('address'),
+                    mobile: data.get('mobile')
+                };
+                localStorage.setItem('user', JSON.stringify(user));
+                userDetails.style.display = 'block';
+                document.querySelector('#user-name').textContent = user.name;
+                document.querySelector('#user-gender').textContent = user.gender;
+                document.querySelector('#user-age').textContent = user.age;
+                document.querySelector('#user-email').textContent = user.email;
+                document.querySelector('#user-address').textContent = user.address;
+                document.querySelector('#user-mobile').textContent = user.mobile;
+            });
+            if (localStorage.getItem('user')) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                userDetails.style.display = 'block';
+                document.querySelector('#user-name').textContent = user.name;
+                document.querySelector('#user-gender').textContent = user.gender;
+                document.querySelector('#user-age').textContent = user.age;
+                document.querySelector('#user-email').textContent = user.email;
+                document.querySelector('#user-address').textContent = user.address;
+                document.querySelector('#user-mobile').textContent = user.mobile;
+            }
+        </script>
+    </div>
+</body>
+</html>
